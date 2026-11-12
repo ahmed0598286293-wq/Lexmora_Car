@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f7">
+  <meta name="description" content="LEXMORA — معرض سيارات عصري للبيع والإيجار مع تجربة Three.js تفاعلية لتخصيص السيارات ثلاثية الأبعاد.">
+  <title>LEXMORA — Modern Automotive Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="commerce.css">
+
+</head>
+<body>
+  <a class="skip-link" href="#main-content">تجاوز إلى المحتوى</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="LEXMORA الصفحة الرئيسية">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-name">LEXMORA<span>®</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a class="active" href="#home">الرئيسية</a>
+        <a href="#cars" data-nav-filter="sale">سيارات للبيع</a>
+        <a href="#cars" data-nav-filter="rent">سيارات للإيجار</a>
+        <a href="#LEXMORA-standard">معايير LEXMORA</a>
+        <a href="#how-it-works">كيف نعمل؟</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="preference-controls" aria-label="إعدادات العرض">
+          <button class="preference-button language-toggle" id="language-toggle" type="button" aria-label="Switch language" title="Switch language"><span class="preference-symbol">文</span><span id="language-label">EN</span></button>
+          <button class="preference-button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch theme"><span class="preference-symbol" id="theme-symbol">◐</span><span id="theme-label">الوضع الداكن</span></button>
+        </div>
+        <span class="header-note"><span class="online-dot"></span> معرضك للسيارات</span>
+        <a class="header-cta" href="login.html">دخول العميل <span>↗</span></a>
+        <a class="header-cta" href="#list-car">اعرض سيارتك <span>＋</span></a>
+        <button class="menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> LEXMORA / THE AUTOMOTIVE EDIT <span class="eyebrow-year">NO. 001</span></div>
+          <h1>مشوارك يبدأ<br>بـ <em>اختيار مختلف.</em></h1>
+          <p class="hero-description">اكتشف مجموعة منتقاة من السيارات المستعملة للبيع وخيارات الإيجار، وخصّص سيارتك بصرياً داخل مساحة تفاعلية واحدة.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#cars">اكتشف المجموعة <span>↗</span></a>
+            <a class="text-button" href="#list-car">أضف سيارتك <span>＋</span></a>
+          </div>
+          <div class="hero-benefits">
+            <div><span class="benefit-icon">01</span><span>بيع وشراء</span></div>
+            <div><span class="benefit-icon">02</span><span>إيجار مرن</span></div>
+            <div><span class="benefit-icon">03</span><span>استكشاف تفاعلي</span></div>
+          </div>
+        </div>
+
+        <section class="hero-visual LEXMORA-configurator" aria-label="LEXMORA interactive 3D vehicle configurator">
+          <div class="configurator-topbar">
+            <div class="configurator-live"><span class="config-live-dot"></span><span>LOCAL VEHICLE ASSETS</span><span class="config-index">01 / 06</span></div>
+            <div class="configurator-actions-top">
+              <button type="button" id="config-reset" class="config-icon-button" aria-label="إعادة ضبط التخصيص" title="إعادة ضبط">↺</button>
+              <button type="button" id="config-save" class="config-icon-button" aria-label="حفظ إعداد السيارة" title="حفظ الإعداد">♡</button>
+            </div>
+          </div>
+
+          <div class="configurator-heading">
+            <div>
+              <span class="config-overline" id="config-make-label">BMW / M PERFORMANCE</span>
+              <h2 id="config-model-label">M5 Sedan <span>2026</span></h2>
+              <p id="config-model-note">Executive performance · Plug-in Hybrid</p>
+            </div>
+            <div class="config-price">
+              <span>CONFIGURATION PREVIEW</span>
+              <strong id="config-price-label">$ 121,900</strong>
+              <small>Sample price · Not a live offer</small>
+            </div>
+          </div>
+
+          <div class="config-stage-wrap">
+            <div class="config-stage-grid" aria-hidden="true"></div>
+            <div class="config-stage-glow" aria-hidden="true"></div>
+            <canvas id="car-config-canvas" aria-label="مجسم سيارة ثلاثي الأبعاد قابل للدوران والتخصيص" tabindex="0"></canvas>
+            <div class="config-stage-hud config-hud-left"><span class="hud-dot"></span><span id="config-view-label">SIDE PROFILE / STUDIO</span></div>
+            <div class="config-stage-hud config-hud-right">
+              <button type="button" id="canvas-zoom-out" aria-label="تصغير السيارة">−</button>
+              <span id="canvas-zoom-label">100%</span>
+              <button type="button" id="canvas-zoom-in" aria-label="تكبير السيارة">＋</button>
+            </div>
+            <div class="config-stage-hint">اسحب لتدوير السيارة 360° · انقر مرتين لإعادة العرض</div>
+          </div>
+
+          <div class="configurator-controls">
+            <div class="config-select-row">
+              <label class="config-select-field"><span>الشركة المصنعة</span>
+                <select id="vehicle-make">
+                  <option value="BMW" selected>BMW</option>
+                  <option value="Mercedes">Mercedes-Benz</option>
+                  <option value="Kia">Kia</option>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Audi">Audi</option>
+                  <option value="Hyundai">Hyundai</option>
+                </select>
+              </label>
+              <label class="config-select-field"><span>الموديل</span>
+                <select id="vehicle-model">
+                  <option value="bmw-m5">M5 Competition · 2026</option>
+                  <option value="mercedes-c200">C 200 Avantgarde · 2020</option>
+                  <option value="kia-sportage">Sportage EX · 2023</option>
+                  <option value="toyota-corolla">Corolla XLI · 2022</option>
+                  <option value="audi-a6">A6 S line · 2018</option>
+                  <option value="hyundai-tucson">Tucson · 2024</option>
+                </select>
+              </label>
+              <label class="config-select-field"><span>الجنوط</span>
+                <select id="wheel-style">
+                  <option value="factory">Factory multi-spoke</option>
+                  <option value="black">Shadow black</option>
+                  <option value="bronze">Satin bronze</option>
+                  <option value="diamond">Diamond cut</option>
+                </select>
+              </label>
+              <label class="config-select-field"><span>التطعيمات</span>
+                <select id="trim-style">
+                  <option value="chrome">Chrome line</option>
+                  <option value="shadow">Shadow line</option>
+                  <option value="sport">Sport finish</option>
+                </select>
+              </label>
+            </div>
+            <div class="config-bottom-row">
+              <div class="config-paint-block">
+                <div class="config-control-heading"><span>لون الهيكل</span><strong id="selected-color">ICE PEARL</strong></div>
+                <div class="color-options" role="group" aria-label="ألوان الهيكل">
+                  <button class="config-color-swatch selected" type="button" data-color="#f0f3f5" data-name="ICE PEARL" aria-label="أبيض لؤلؤي" aria-pressed="true"><span style="--swatch:#f0f3f5"></span></button>
+                  <button class="config-color-swatch" type="button" data-color="#bfc7ce" data-name="ARCTIC SILVER" aria-label="فضي قطبي" aria-pressed="false"><span style="--swatch:#bfc7ce"></span></button>
+                  <button class="config-color-swatch" type="button" data-color="#242a32" data-name="GRAPHITE" aria-label="غرافيتي" aria-pressed="false"><span style="--swatch:#242a32"></span></button>
+                  <button class="config-color-swatch" type="button" data-color="#143b78" data-name="SAN MARINO BLUE" aria-label="أزرق" aria-pressed="false"><span style="--swatch:#143b78"></span></button>
+                  <button class="config-color-swatch" type="button" data-color="#8e2d32" data-name="TORONTO RED" aria-label="أحمر" aria-pressed="false"><span style="--swatch:#8e2d32"></span></button>
+                  <button class="config-color-swatch" type="button" data-color="#d4c7a8" data-name="CHAMPAGNE" aria-label="شامبين" aria-pressed="false"><span style="--swatch:#d4c7a8"></span></button>
+                </div>
+              </div>
+              <div class="config-extra-actions">
+                <span class="config-upload-button" aria-label="سيارات ثلاثية الأبعاد مولدة محلياً"><span>◈</span> 3D LOCAL MODELS</span>
+                <button type="button" id="config-share" class="config-share-button">نسخ الإعداد <span>↗</span></button>
+              </div>
+            </div>
+            <p class="config-disclaimer">المجسمات الستة تُنشأ محلياً باستخدام Three.js داخل المتصفح؛ غيّر اللون والجنوط وشاهد السيارة تدور حول نفسها. لا يتم تحميل صور سيارات من أي موقع خارجي.</p>
+          </div>
+        </section>
+        <a class="hero-scroll" href="#cars"><span>اكتشف السيارات</span><i>↓</i></a>
+      </section>
+
+      <section class="brand-rail" aria-label="ماركات السيارات في المعرض">
+        <span class="brand-rail-label">BRANDS IN THE COLLECTION</span>
+        <div class="brand-rail-logos"><span>MERCEDES-BENZ</span><span>BMW</span><span>KIA</span><span>TOYOTA</span><span>AUDI</span><span>HYUNDAI</span></div>
+        <span class="brand-rail-note">SAMPLE SELECTION / 2026</span>
+      </section>
+
+      <section class="inventory-section section-pad" id="cars">
+        <div class="section-topline">
+          <div class="section-kicker"><span>01 / OUR COLLECTION</span><i></i><span>تشكيلة المعرض</span></div>
+          <span class="demo-note"><span></span> بيانات تجريبية قابلة للتعديل</span>
+        </div>
+        <div class="inventory-heading">
+          <div>
+            <h2>المجموعة <em>المتاحة الآن.</em></h2>
+            <p>سواء كنت تبحث عن سيارة تملكها أو تحتاجها لفترة محددة، ستجد خياراتك هنا.</p>
+          </div>
+          <div class="inventory-count"><strong id="result-count">06</strong><span>سيارات معروضة</span></div>
+        </div>
+
+        <div class="filter-panel" aria-label="تصفية السيارات">
+          <div class="filter-tabs" role="group" aria-label="نوع الإعلان">
+            <button class="filter-tab active" type="button" data-filter="all" aria-pressed="true">كل السيارات</button>
+            <button class="filter-tab" type="button" data-filter="sale" aria-pressed="false"><span class="tab-dot sale-dot"></span> للبيع</button>
+            <button class="filter-tab" type="button" data-filter="rent" aria-pressed="false"><span class="tab-dot rent-dot"></span> للإيجار</button>
+          </div>
+          <div class="filter-controls">
+            <label class="search-control">
+              <span class="control-icon">⌕</span>
+              <input id="car-search" type="search" placeholder="ابحث عن ماركة أو موديل..." autocomplete="off">
+            </label>
+            <label class="select-control"><span>الشركة</span>
+              <select id="brand-filter">
+                <option value="all">كل الشركات</option>
+                <option value="Mercedes">Mercedes-Benz</option>
+                <option value="BMW">BMW</option>
+                <option value="Kia">Kia</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Audi">Audi</option>
+                <option value="Hyundai">Hyundai</option>
+              </select>
+            </label>
+            <label class="select-control"><span>ترتيب حسب</span>
+              <select id="sort-filter">
+                <option value="featured">المميزة أولاً</option>
+                <option value="price-low">السعر: الأقل أولاً</option>
+                <option value="price-high">السعر: الأعلى أولاً</option>
+                <option value="year-new">الأحدث موديلًا</option>
+              </select>
+            </label>
+            <button class="reset-filters" id="reset-filters" type="button" aria-label="مسح الفلاتر">إعادة ضبط <span>↺</span></button>
+          </div>
+        </div>
+
+        <div class="cars-grid" id="cars-grid">
+          <article class="car-card" data-car-id="mercedes-c200-2020" data-status="sale" data-brand="Mercedes" data-price="119000" data-year="2020" data-search="mercedes benz c200 مرسيدس سي 200 سيدان">
+            <div class="car-photo photo-mercedes">
+              <img src="assets/cars/mercedes-c200.png" alt="سيارة مرسيدس بنز C200" loading="lazy">
+              <span class="listing-badge sale-badge">للبيع</span><span class="photo-index">01 / 06</span>
+              <button class="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♡</button>
+              <span class="photo-caption">PREMIUM SELECTION</span>
+            </div>
+            <div class="car-info">
+              <div class="car-title-row"><div><span class="car-make">MERCEDES-BENZ</span><h3>C 200 Avantgarde</h3></div><span class="car-year">2020</span></div>
+              <div class="car-specs"><span>◷ 58,000 كم</span><span>▣ أوتوماتيك</span><span>⛽ بنزين</span></div>
+              <div class="car-card-bottom"><div class="car-price"><strong>119,000 ₪</strong><small>سعر البيع</small></div><button class="details-button" type="button" data-open-details>التفاصيل <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="car-card" data-car-id="kia-sportage-2023" data-status="rent" data-brand="Kia" data-price="240" data-year="2023" data-search="kia sportage كيا سبورتاج suv دفع رباعي">
+            <div class="car-photo photo-kia">
+              <img src="assets/cars/kia-sportage.png" alt="سيارة كيا سبورتاج" loading="lazy">
+              <span class="listing-badge rent-badge">للإيجار</span><span class="photo-index">02 / 06</span>
+              <button class="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♡</button>
+              <span class="photo-caption">READY FOR YOUR TRIP</span>
+            </div>
+            <div class="car-info">
+              <div class="car-title-row"><div><span class="car-make">KIA</span><h3>Sportage EX</h3></div><span class="car-year">2023</span></div>
+              <div class="car-specs"><span>◷ 21,000 كم</span><span>▣ أوتوماتيك</span><span>⛽ هايبرد</span></div>
+              <div class="car-card-bottom"><div class="car-price"><strong>240 ₪ <small>/ يوم</small></strong><small>سعر الإيجار اليومي</small></div><button class="details-button" type="button" data-open-details>التفاصيل <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="car-card" data-car-id="bmw-m5-2019" data-status="sale" data-brand="BMW" data-price="97000" data-year="2019" data-search="bmw 520i بي ام دبليو الفئة الخامسة سيدان">
+            <div class="car-photo photo-bmw">
+              <img src="assets/cars/bmw-m5.png" alt="سيارة بي إم دبليو الفئة الخامسة" loading="lazy">
+              <span class="listing-badge sale-badge">للبيع</span><span class="photo-index">03 / 06</span>
+              <button class="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♡</button>
+              <span class="photo-caption">DRIVE WITH CONFIDENCE</span>
+            </div>
+            <div class="car-info">
+              <div class="car-title-row"><div><span class="car-make">BMW</span><h3>520i Luxury Line</h3></div><span class="car-year">2019</span></div>
+              <div class="car-specs"><span>◷ 74,000 كم</span><span>▣ أوتوماتيك</span><span>⛽ بنزين</span></div>
+              <div class="car-card-bottom"><div class="car-price"><strong>97,000 ₪</strong><small>سعر البيع</small></div><button class="details-button" type="button" data-open-details>التفاصيل <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="car-card" data-car-id="toyota-corolla-2022" data-status="rent" data-brand="Toyota" data-price="185" data-year="2022" data-search="toyota corolla تويوتا كورولا سيدان اقتصادي">
+            <div class="car-photo photo-toyota">
+              <img src="assets/cars/toyota-corolla.png" alt="سيارة تويوتا كورولا" loading="lazy">
+              <span class="listing-badge rent-badge">للإيجار</span><span class="photo-index">04 / 06</span>
+              <button class="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♡</button>
+              <span class="photo-caption">EASY EVERYDAY DRIVE</span>
+            </div>
+            <div class="car-info">
+              <div class="car-title-row"><div><span class="car-make">TOYOTA</span><h3>Corolla XLI</h3></div><span class="car-year">2022</span></div>
+              <div class="car-specs"><span>◷ 32,000 كم</span><span>▣ أوتوماتيك</span><span>⛽ بنزين</span></div>
+              <div class="car-card-bottom"><div class="car-price"><strong>185 ₪ <small>/ يوم</small></strong><small>سعر الإيجار اليومي</small></div><button class="details-button" type="button" data-open-details>التفاصيل <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="car-card" data-car-id="audi-a6-2018" data-status="sale" data-brand="Audi" data-price="89000" data-year="2018" data-search="audi a6 اودي اي 6 سيدان فاخرة">
+            <div class="car-photo photo-audi">
+              <img src="assets/cars/audi-a6.png" alt="سيارة أودي A6" loading="lazy">
+              <span class="listing-badge sale-badge">للبيع</span><span class="photo-index">05 / 06</span>
+              <button class="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♡</button>
+              <span class="photo-caption">TIMELESS ELEGANCE</span>
+            </div>
+            <div class="car-info">
+              <div class="car-title-row"><div><span class="car-make">AUDI</span><h3>A6 S line</h3></div><span class="car-year">2018</span></div>
+              <div class="car-specs"><span>◷ 86,000 كم</span><span>▣ أوتوماتيك</span><span>⛽ بنزين</span></div>
+              <div class="car-card-bottom"><div class="car-price"><strong>89,000 ₪</strong><small>سعر البيع</small></div><button class="details-button" type="button" data-open-details>التفاصيل <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="car-card" data-car-id="hyundai-tucson-2024" data-status="rent" data-brand="Hyundai" data-price="260" data-year="2024" data-search="hyundai tucson هيونداي توسان suv دفع رباعي">
+            <div class="car-photo photo-hyundai">
+              <img src="assets/cars/hyundai-tucson.png" alt="سيارة هيونداي توسان" loading="lazy">
+              <span class="listing-badge rent-badge">للإيجار</span><span class="photo-index">06 / 06</span>
+              <button class="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♡</button>
+              <span class="photo-caption">MORE ROOM TO EXPLORE</span>
+            </div>
+            <div class="car-info">
+              <div class="car-title-row"><div><span class="car-make">HYUNDAI</span><h3>Tucson Premium</h3></div><span class="car-year">2024</span></div>
+              <div class="car-specs"><span>◷ 9,000 كم</span><span>▣ أوتوماتيك</span><span>⛽ هايبرد</span></div>
+              <div class="car-card-bottom"><div class="car-price"><strong>260 ₪ <small>/ يوم</small></strong><small>سعر الإيجار اليومي</small></div><button class="details-button" type="button" data-open-details>التفاصيل <span>↗</span></button></div>
+            </div>
+          </article>
+        </div>
+        <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>لم نعثر على سيارات مطابقة</h3><p>جرّب تغيير كلمات البحث أو خيارات التصفية.</p><button id="empty-reset" type="button">عرض كل السيارات</button></div>
+        <div class="inventory-footnote"><span>LEXMORA / INVENTORY</span><span>كل الأسعار والمواصفات في هذه النسخة تجريبية.</span></div>
+      </section>
+
+      <section class="standard-section section-pad" id="LEXMORA-standard" aria-labelledby="standard-title">
+        <div class="standard-heading">
+          <div class="section-kicker"><span>02 / THE LEXMORA STANDARD</span><i></i><span>تفاصيل تصنع الفرق</span></div>
+          <div class="standard-heading-row">
+            <div><h2 id="standard-title">تجربة أذكى.<br><em>اختيار أوضح.</em></h2><p>كل تفصيلة في LEXMORA مصممة لتجعل استكشاف السيارة أسهل وأكثر وضوحاً.</p></div>
+            <span class="standard-index">DESIGNED AROUND<br>YOUR NEXT DRIVE</span>
+          </div>
+        </div>
+        <div class="standard-grid">
+          <article class="standard-card"><span class="standard-number">01</span><span class="standard-icon" aria-hidden="true">◈</span><h3>تفاصيل قبل القرار</h3><p>معلومات أساسية ظاهرة، ومواصفات منظمة تساعدك على تكوين صورة أوضح عن كل سيارة.</p><span class="standard-card-foot">CLEAR INFORMATION</span></article>
+          <article class="standard-card"><span class="standard-number">02</span><span class="standard-icon" aria-hidden="true">⌘</span><h3>استكشاف تفاعلي</h3><p>تصفّح السيارات، جرّب الألوان في المشهد ثلاثي الأبعاد، وقارن الخيارات جنباً إلى جنب.</p><span class="standard-card-foot">INTERACTIVE DISCOVERY</span></article>
+          <article class="standard-card"><span class="standard-number">03</span><span class="standard-icon" aria-hidden="true">↗</span><h3>بيع أو إيجار بوضوح</h3><p>تجربة موحدة تساعدك على الوصول إلى خيارات التملك أو الاستخدام لفترة محددة.</p><span class="standard-card-foot">FLEXIBLE JOURNEYS</span></article>
+        </div>
+      </section>
+
+      <section class="how-section section-pad" id="how-it-works">
+        <div class="how-intro"><div class="section-kicker"><span>03 / SIMPLE STEPS</span><i></i><span>كيف يعمل المعرض</span></div><h2>من البحث إلى<br><em>اختيارك بثقة.</em></h2><p>تصفّح الإعلانات، افتح تفاصيل السيارة، ثم تواصل مع المعرض لإكمال البيع أو الإيجار.</p></div>
+        <div class="steps-list">
+          <article class="step-item"><span class="step-number">01</span><div><h3>ابحث واكتشف</h3><p>استخدم البحث والفلاتر للوصول إلى السيارة التي تناسب احتياجك.</p></div><span class="step-arrow">↙</span></article>
+          <article class="step-item"><span class="step-number">02</span><div><h3>راجع التفاصيل</h3><p>اطّلع على الموديل والسنة والسعر والمواصفات قبل اتخاذ القرار.</p></div><span class="step-arrow">↙</span></article>
+          <article class="step-item"><span class="step-number">03</span><div><h3>تواصل وأكمل طلبك</h3><p>اطلب معلومات إضافية وحدد موعد المعاينة أو مدة الإيجار.</p></div><span class="step-arrow">↙</span></article>
+        </div>
+      </section>
+
+      <section class="list-car-section section-pad" id="list-car">
+        <div class="list-car-copy"><span class="list-car-kicker">لأصحاب السيارات</span><h2>سيارتك تستحق<br><em>الظهور الأفضل.</em></h2><p>هل تملك سيارة وتريد عرضها للبيع أو للإيجار؟ أرسل بياناتها واحفظ طلب إعلانك في لوحة التاجر التجريبية.</p></div>
+        <form class="list-car-form" id="listing-form">
+          <div class="form-heading"><span>01 — SELL OR RENT</span><strong>طلب إضافة سيارة</strong></div>
+          <label>اسمك<input name="name" type="text" placeholder="الاسم الكامل" required></label>
+          <label>رقم التواصل<input name="phone" type="tel" placeholder="رقم الهاتف" required></label>
+          <div class="form-row"><label>نوع الطلب<select name="status" required><option value="sale">بيع سيارة</option><option value="rent">تأجير سيارة</option></select></label><label>نوع السيارة<input name="car" type="text" placeholder="الشركة والموديل" required></label></div>
+          <button class="submit-listing" type="submit">إرسال طلب الإضافة <span>↗</span></button>
+          <small class="form-note">طلب الإعلان يُحفظ محلياً في مساحة التاجر التجريبية؛ لا يوجد خادم أو نشر عام للإعلان.</small>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">LEXMORA<span>®</span></span></a>
+      <span>© 2026 LEXMORA MOTORS. BUILT FOR THE NEXT DRIVE.</span>
+      <a href="#home">العودة للأعلى ↑</a>
+    </footer>
+  </div>
+
+  <dialog class="car-dialog" id="car-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" aria-label="إغلاق">×</button>
+    <div class="dialog-content">
+      <div class="dialog-photo" id="dialog-photo"><span class="dialog-status" id="dialog-status"></span></div>
+      <div class="dialog-details">
+        <span class="dialog-make" id="dialog-make"></span>
+        <h2 id="dialog-title"></h2>
+        <div class="dialog-price" id="dialog-price"></div>
+        <p id="dialog-description"></p>
+        <div class="dialog-specs" id="dialog-specs"></div>
+        <div class="dialog-commerce-actions"><button class="dialog-cart-button" id="dialog-add-cart" type="button" data-cart-add>أضف إلى السلة <span>＋</span></button><button class="dialog-copy" id="copy-inquiry" type="button">نسخ رسالة الاستفسار <span>⧉</span></button></div>
+        <small>بيانات السيارة المعروضة تجريبية ويمكن استبدالها ببيانات إعلاناتك الفعلية.</small>
+      </div>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="cart.js" defer></script>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="configurator.js"></script>
+</body>
+</html>

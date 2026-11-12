@@ -1,0 +1,13 @@
+{
+  "description": "Local vehicle preview library used by the LEXMORA Canvas configurator.",
+  "runtimeRemoteImages": false,
+  "vehicles": [
+    { "id": "bmw-m5", "image": "bmw-m5.png", "paintMask": "bmw-m5-paint-mask.png", "wheelMask": "bmw-m5-wheel-mask.png", "source": "user-supplied reference" },
+    { "id": "bmw-520i", "image": "bmw-520i.png", "paintMask": "bmw-520i-paint-mask.png", "wheelMask": "bmw-520i-wheel-mask.png", "source": "local preview render" },
+    { "id": "mercedes-c200", "image": "mercedes-c200.png", "paintMask": "mercedes-c200-paint-mask.png", "wheelMask": "mercedes-c200-wheel-mask.png", "source": "local preview render" },
+    { "id": "kia-sportage", "image": "kia-sportage.png", "paintMask": "kia-sportage-paint-mask.png", "wheelMask": "kia-sportage-wheel-mask.png", "source": "local preview render" },
+    { "id": "toyota-corolla", "image": "toyota-corolla.png", "paintMask": "toyota-corolla-paint-mask.png", "wheelMask": "toyota-corolla-wheel-mask.png", "source": "local preview render" },
+    { "id": "audi-a6", "image": "audi-a6.png", "paintMask": "audi-a6-paint-mask.png", "wheelMask": "audi-a6-wheel-mask.png", "source": "local preview render" },
+    { "id": "hyundai-tucson", "image": "hyundai-tucson.png", "paintMask": "hyundai-tucson-paint-mask.png", "wheelMask": "hyundai-tucson-wheel-mask.png", "source": "local preview render" }
+  ]
+}
